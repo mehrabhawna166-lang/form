@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration Form</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f0f4f8; color: #333; }
+    h1 { text-align: center; padding: 30px 0 10px; color: #1a3c6e; font-size: 28px; }
+    h1 mark { background: #d0e8ff; padding: 4px 12px; border-radius: 6px; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    .section {
+      background: white; border-radius: 12px; padding: 24px;
+      margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .section h2 {
+      font-size: 16px; color: #1a3c6e; border-bottom: 2px solid #d0e8ff;
+      padding-bottom: 10px; margin-bottom: 18px;
+    }
+    .row { display: flex; flex-wrap: wrap; gap: 16px; }
+    .field { flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 6px; }
+    .field.full { flex: 100%; }
+    label { font-size: 13px; font-weight: 600; color: #555; }
+    label span.req { color: red; margin-left: 3px; }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%; padding: 10px 12px; border: 1.5px solid #cdd5e0;
+      border-radius: 8px; font-size: 14px; transition: border 0.2s;
+      background: #fafbfc;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none; border-color: #1a3c6e; background: white;
+    }
+    textarea { resize: vertical; min-height: 80px; }
+    .radio-group, .checkbox-group { display: flex; flex-wrap: wrap; gap: 12px; padding-top: 4px; }
+    .radio-group label, .checkbox-group label {
+      display: flex; align-items: center; gap: 6px;
+      font-weight: normal; cursor: pointer; font-size: 14px;
+    }
+    .photo-box {
+      border: 2px dashed #cdd5e0; border-radius: 10px; padding: 24px;
+      text-align: center; background: #f8fafc; color: #888; font-size: 13px;
+    }
+    .submit-bar {
+      text-align: right; padding: 16px 0 40px;
+    }
+    button[type="submit"] {
+      background: #1a3c6e; color: white; border: none;
+      padding: 13px 36px; border-radius: 10px; font-size: 16px;
+      font-weight: 600; cursor: pointer; transition: background 0.2s;
+    }
+    button[type="submit"]:hover { background: #0f2a52; }
+    @media (max-width: 600px) { .field { min-width: 100%; } }
+  </style>
+</head>
+<body>
+
+<h1><mark>Student Registration Form</mark></h1>
+
+<div class="container">
+<form action="/submit" method="POST">
+
+  <!-- Personal Info -->
+  <div class="section">
+    <h2>👤 Personal Information</h2>
+    <div class="row">
+      <div class="field">
+        <label>Full Name <span class="req">*</span></label>
+        <input type="text" name="name" placeholder="Apna poora naam likho" required>
+      </div>
+      <div class="field">
+        <label>Date of Birth <span class="req">*</span></label>
+        <input type="date" name="dateOfBirth" required>
+      </div>
+      <div class="field">
+        <label>Email Address <span class="req">*</span></label>
+        <input type="email" name="email" placeholder="aapka@email.com" required>
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Password dalein">
+      </div>
+      <div class="field full">
+        <label>Gender <span class="req">*</span></label>
+        <div class="radio-group">
+          <label><input type="radio" name="gender" value="Male" required> Male</label>
+          <label><input type="radio" name="gender" value="Female"> Female</label>
+          <label><input type="radio" name="gender" value="Other"> Other</label>
+        </div>
+      </div>
+      <div class="field full">
+        <label>Student Photograph</label>
+        <div class="photo-box">📷 Photo Upload Area (yahan photo ayegi)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact & Address -->
+  <div class="section">
+    <h2>📍 Contact & Address</h2>
+    <div class="row">
+      <div class="field">
+        <label>Contact Number <span class="req">*</span></label>
+        <input type="text" name="contactNo" placeholder="10 digit number" required>
+      </div>
+      <div class="field">
+        <label>PIN Code <span class="req">*</span></label>
+        <input type="text" name="pinCode" placeholder="6 digit PIN" required>
+      </div>
+      <div class="field full">
+        <label>Correspondence Address <span class="req">*</span></label>
+        <textarea name="correspondenceAddress" placeholder="Aapka current address" required></textarea>
+      </div>
+      <div class="field full">
+        <label>Permanent Address</label>
+        <textarea name="permanentAddress" placeholder="Permanent address (same hoga toh khali chhod do)"></textarea>
+      </div>
+      <div class="field">
+        <label>Country <span class="req">*</span></label>
+        <select name="country" required>
+          <option value="">Select Country</option>
+          <option>India</option>
+          <option>United States</option>
+          <option>United Kingdom</option>
+          <option>Canada</option>
+          <option>Australia</option>
+          <option>Germany</option>
+          <option>France</option>
+          <option>UAE</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>State <span class="req">*</span></label>
+        <select name="state" required>
+          <option value="">Select State</option>
+          <option>Haryana</option><option>Delhi</option><option>Punjab</option>
+          <option>Uttar Pradesh</option><option>Bihar</option><option>Rajasthan</option>
+          <option>Maharashtra</option><option>Gujarat</option><option>Tamil Nadu</option>
+          <option>Karnataka</option><option>Madhya Pradesh</option><option>West Bengal</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Academic -->
+  <div class="section">
+    <h2>🎓 Academic Background</h2>
+    <div class="row">
+      <div class="field">
+        <label>Category <span class="req">*</span></label>
+        <select name="category" required>
+          <option value="">Select Category</option>
+          <option>General</option><option>OBC</option>
+          <option>SC</option><option>ST</option><option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Religion</label>
+        <select name="religion">
+          <option value="">Select Religion</option>
+          <option>Hinduism</option><option>Islam</option><option>Christianity</option>
+          <option>Sikhism</option><option>Buddhism</option><option>Jainism</option>
+          <option>Judaism</option><option>Zoroastrianism</option><option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>10th Board <span class="req">*</span></label>
+        <select name="board10th" required>
+          <option value="">Select Board</option>
+          <option>HBSE</option><option>CBSE</option><option>ICSE</option>
+          <option>NIOS</option><option>UP Board</option><option>Bihar Board</option><option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>12th Board <span class="req">*</span></label>
+        <select name="board12th" required>
+          <option value="">Select Board</option>
+          <option>HBSE</option><option>CBSE</option><option>ICSE</option>
+          <option>NIOS</option><option>UP Board</option><option>Bihar Board</option><option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Year of Passing <span class="req">*</span></label>
+        <select name="yearOfPassing" required id="yearSelect">
+          <option value="">Select Year</option>
+        </select>
+        <script>
+          var sel = document.getElementById('yearSelect');
+          var cur = new Date().getFullYear();
+          for (var y = cur; y >= 1980; y--) {
+            var opt = document.createElement('option');
+            opt.value = y; opt.textContent = y;
+            sel.appendChild(opt);
+          }
+        </script>
+      </div>
+    </div>
+  </div>
+
+  <!-- Family -->
+  <div class="section">
+    <h2>👨‍👩‍👦 Family Details</h2>
+    <div class="row">
+      <div class="field">
+        <label>Father's Name <span class="req">*</span></label>
+        <input type="text" name="fatherName" placeholder="Pita ji ka naam" required>
+      </div>
+      <div class="field">
+        <label>Father's Contact</label>
+        <input type="text" name="fatherContact" placeholder="Phone number">
+      </div>
+      <div class="field">
+        <label>Mother's Name <span class="req">*</span></label>
+        <input type="text" name="motherName" placeholder="Mata ji ka naam" required>
+      </div>
+      <div class="field">
+        <label>Mother's Contact</label>
+        <input type="text" name="motherContact" placeholder="Phone number">
+      </div>
+    </div>
+  </div>
+
+  <!-- Hobbies & Message -->
+  <div class="section">
+    <h2>❤️ Hobbies & Message</h2>
+    <div class="row">
+      <div class="field full">
+        <label>Hobbies</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="hobbies" value="Drawing"> Drawing</label>
+          <label><input type="checkbox" name="hobbies" value="Painting"> Painting</label>
+          <label><input type="checkbox" name="hobbies" value="Photography"> Photography</label>
+          <label><input type="checkbox" name="hobbies" value="Dancing"> Dancing</label>
+          <label><input type="checkbox" name="hobbies" value="Singing"> Singing</label>
+          <label><input type="checkbox" name="hobbies" value="Blogging"> Blogging</label>
+          <label><input type="checkbox" name="hobbies" value="Calligraphy"> Calligraphy</label>
+          <label><input type="checkbox" name="hobbies" value="Sports"> Sports</label>
+        </div>
+      </div>
+      <div class="field full">
+        <label>Other Hobbies</label>
+        <input type="text" name="otherHobbies" placeholder="Koi aur hobby ho toh likho">
+      </div>
+      <div class="field full">
+        <label>Message / Statement of Purpose</label>
+        <textarea name="message" placeholder="Kuch kehna chahte ho toh yahan likho..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="submit-bar">
+    <button type="submit">Submit Application →</button>
+  </div>
+
+</form>
+</div>
+
+</body>
+</html>
